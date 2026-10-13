@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>One-Way Camera Share</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div class="logo">◉</div>
+      <div>
+        <p class="eyebrow">PRIVATE LIVE SESSION</p>
+        <h1>One-Way Camera Share</h1>
+      </div>
+      <span id="status" class="status">Starting…</span>
+    </header>
+
+    <section id="viewerPanel" class="panel hidden">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">YOUR VIEWER</p>
+          <h2>Incoming camera feed</h2>
+        </div>
+        <span class="live-dot"></span>
+      </div>
+      <div class="video-wrap">
+        <video id="remoteVideo" autoplay playsinline></video>
+        <div id="videoPlaceholder" class="placeholder">
+          <div class="placeholder-icon">▣</div>
+          <strong>Waiting for camera connection</strong>
+          <p>Keep this page open while the other person joins.</p>
+        </div>
+      </div>
+      <div class="share-row">
+        <div class="url-box"><span id="shareUrl">Creating your link…</span></div>
+        <button id="copyBtn" class="secondary" disabled>Copy link</button>
+      </div>
+      <p class="hint">Only the other person's camera is requested and streamed. This page does not request your camera.</p>
+      <button id="endBtn" class="danger">End session</button>
+    </section>
+
+    <section id="guestPanel" class="panel hidden">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">YOU'VE BEEN INVITED</p>
+          <h2>Share your camera?</h2>
+        </div>
+        <span class="privacy-icon">🔒</span>
+      </div>
+      <div class="notice">
+        <strong>Before you continue</strong>
+        <p>If you choose to continue, your live camera video will be sent to the person who created this link while this session is connected. Do not continue unless you trust them.</p>
+      </div>
+      <ul class="privacy-list">
+        <li>Your browser will ask for camera permission.</li>
+        <li>Your camera is not shared until you press the button below and allow access.</li>
+        <li>You can stop sharing at any time.</li>
+        <li>This page does not request your microphone.</li>
+      </ul>
+      <button id="startBtn" class="primary">Agree &amp; share camera</button>
+      <button id="stopBtn" class="danger hidden">Stop sharing</button>
+      <div class="video-wrap guest-video-wrap">
+        <video id="localVideo" autoplay muted playsinline></video>
+        <div id="guestPlaceholder" class="placeholder">
+          <div class="placeholder-icon">▣</div>
+          <strong>Camera preview will appear here</strong>
+          <p>Your camera stays off until you choose to share.</p>
+        </div>
+      </div>
+      <p id="guestMessage" class="hint">You are not sharing your camera.</p>
+    </section>
+
+    <section id="errorPanel" class="panel hidden">
+      <h2>Unable to connect</h2>
+      <p id="errorText">Please refresh and try again.</p>
+    </section>
+
+    <footer>Camera access is controlled by your browser. Use this only with people who understand and agree to the live stream.</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
